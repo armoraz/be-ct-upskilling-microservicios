@@ -1,4 +1,6 @@
+const { response } = require("../utils");
+
 module.exports = (req, res) => {
   const newCharacter = req.body;
-  res.status(200).send("creating character");
+  response(res, 200, newCharacter);
 };

@@ -4,6 +4,18 @@ const server = express();
 
 server.use(morgan("dev"));
 server.use(express.json());
-server.use(require("./routes"));
+server.use("/characters", require("./routes"));
+
+server.use("*", (req, res) => {
+  res.status(404).send("Not found");
+});
+
+server.use((err, req, res, next) => {
+  let CODE = err.statusCode || 500;
+  res.status(CODE).send({
+    error: true,
+    message: err.message,
+  });
+});
 
 module.exports = server;
