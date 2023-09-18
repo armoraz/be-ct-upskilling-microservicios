@@ -1,4 +1,6 @@
+const response = require("../utils/response");
+
 module.exports = (req, res) => {
   const newFilm = req.body;
-  res.status(200).send("creating film");
+  response(res, 200, newFilm);
 };
